@@ -26,10 +26,10 @@ end
 
 
 figure(1); clf;
-set(gcf, 'position', [500   657   900   300], 'color', 'w');
+set(gcf, 'position', [560   657   850   300], 'color', 'w');
 
-ax(1) = easy_gridOfEqualFigures([0.19 0.16], [0.07 0.74]);
-ax(2:3) = easy_gridOfEqualFigures([0.19 0.16], [0.38 0.12 0.02]);
+ax = easy_gridOfEqualFigures([0.19 0.12], [0.09 0.12 0.12 0.03]);
+ax = easy_gridOfEqualFigures([0.19 0.12], [0.09 0.12 0.12 0.03]);
 axes(ax(1)); hold on;
 set(ax(1), 'units', 'points');
 pp = get(ax(1), 'position');
@@ -83,8 +83,7 @@ set(ttl, 'fontsize', 20, 'fontweight', 'normal')
 
 set([xl yl], 'fontsize', 18)
 
-addABCs(ax(1), [-0.05 0.17], 32, 'a')
-addABCs(ax(2:3), [-0.06 0.17], 32, 'bc')
+addABCs(ax, [-0.07 0.13], 32, 'abcd')
 
 saveFigurePdf(gcf, '~/Desktop/Figure_5')
 saveFigureEps(gcf, '~/Desktop/Figure_5')
