@@ -15,7 +15,7 @@
 
 clear
 
-orange = [0.906 0.463 0.247];
+
 AZred = [171,5,32]/256;
 AZblue = [12,35,75]/256;
 
@@ -111,5 +111,6 @@ set(ax(4), 'xtick', [0 ERstar 0.5])
 set(ax(2:3), 'xtick', [0:25:50])
 
 set(ax, 'tickdir','out', 'fontsize', 20, 'box', 'off')
-addABCs(ax, [-0.11 0.07], 36)
-saveFigurePdf(gcf, '~/Desktop/pc80_intuition')
+addABCs(ax, [-0.11 0.07], 32, 'abcd')
+saveFigurePdf(gcf, '~/Desktop/Figure_1')
+saveFigureEps(gcf, '~/Desktop/Figure_1')

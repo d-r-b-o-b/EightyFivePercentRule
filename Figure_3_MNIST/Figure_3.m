@@ -1,3 +1,19 @@
+% Code to generate Figure 2 from:
+%
+% Wilson, R. C., Shenhav, A., Straccia, M., & Cohen, J. D. (in press). 
+% The Eighty Five Percent Rule for Optimal Learning. Nature Communications
+%
+% Figure 2:
+% The Eighty Five Percent Rule applied to the Perceptron. {\bf a} The 
+% relative precision, $\beta / \beta_{max}$, as a function of training 
+% error rate and training duration.  Training at the optimal error rate 
+% leads to the fastest learning throughout. {\bf b} The dynamics of 
+% learning agree well with the theory.
+%
+% Robert Wilson 2019
+
+% NOTE: To run simulations use GenerateData.m and GenerateData2.m
+
 clear
 
 
@@ -29,9 +45,8 @@ ax = easy_gridOfEqualFigures([0.2 0.1], [0.12 0.15 0.03]);
 
 % PARITY
 axes(ax(1)); hold on;
-trainACC = L1.trainACC;%(2:end,1:1000);
-testACC = L1.testACC;%(2:end,1:1000);
-% save(['example_parity'], 'trainACC', 'testACC')
+trainACC = L1.trainACC;
+testACC = L1.testACC;
 l = plot(1-trainACC', testACC','.', 'markersize', 30);
 for i = 1:length(l)
     f = (i-1) / (length(l)-1);
@@ -48,14 +63,12 @@ t = title('Parity Task', 'fontweight', 'normal');
 [~,ind] = max(testACC);
 mean(ind == 4) % fraction of times training at 85% is best
 
-%%
-
 
 % MAGNITUDE
 axes(ax(2)); hold on;
-trainACC = L2.trainACC;%(2:end,1:1000);
-testACC = L2.testACC;%(2:end,1:1000);
-% save(['example_magnitude'], 'trainACC', 'testACC')
+trainACC = L2.trainACC;
+testACC = L2.testACC;
+
 l = plot(1-trainACC', testACC','.', 'markersize', 30);
 for i = 1:length(l)
     f = (i-1) / (length(l)-1);
@@ -77,11 +90,11 @@ set(ax, 'fontsize', 18, 'ytick', [0.6:0.1:1], ...
     'xticklabel', {0 0.1 'ER*' 0.2 0.3}, 'tickdir', 'out', ...
     'ylim', [0.6 0.9], 'xlim', [0.04 0.31])
 set(t, 'fontsize', 24)
-addABCs(ax, [-0.09 0.1], 32)
-saveFigurePdf(gcf, '~/Desktop/deep_parMag')
-saveFigurePng(gcf, '~/Desktop/deep_parMag')
+addABCs(ax, [-0.09 0.1], 32, 'ab')
+saveFigurePdf(gcf, '~/Desktop/Figure_3')
+saveFigureEps(gcf, '~/Desktop/Figure_3')
 
 [~,ind] = max(testACC);
 mean(ind == 4) % fraction of times training at 85% is best
 mean(ind == 3) % fraction of times training at 80% is best
-% saveFigurePdf(gcf, '~/Desktop/deep')
+

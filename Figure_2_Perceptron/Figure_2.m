@@ -1,16 +1,21 @@
-% Figure 2 from The Eighty Five Percent Rule for Optimal Learning
-% Robert C. Wilson, Amitai Shenhav, Mark Straccia, Jonathan D. Cohen
-
-% The Eighty Five Percent Rule applied to the Perceptron. (A) The relative 
-% precision, $\beta / \beta_{max}$, as a function of training error rate 
-% and training duration.  Training at the optimal error rate leads to the 
-% fastest learning throughout. (B) The dynamics of learning agree well with 
-% the theory.
-
+% Code to generate Figure 2 from:
+%
+% Wilson, R. C., Shenhav, A., Straccia, M., & Cohen, J. D. (in press). 
+% The Eighty Five Percent Rule for Optimal Learning. Nature Communications
+%
+% Figure 2:
+% The Eighty Five Percent Rule applied to the Perceptron. {\bf a} The 
+% relative precision, $\beta / \beta_{max}$, as a function of training 
+% error rate and training duration.  Training at the optimal error rate 
+% leads to the fastest learning throughout. {\bf b} The dynamics of 
+% learning agree well with the theory.
+%
+% Robert Wilson 2019
 clear
 
 D = 100;
 
+%% run simulation
 lambda = 2;
 T = 1000;
 N = 1000;
@@ -19,10 +24,12 @@ i = 1;
 
 for i = 1:N
     i
-    [err, dd(:,:,i), w, e, th(:,:,i)] = run_perceptron_new_v3(D, T, lambda, ER);
+    [err, dd(:,:,i), w, e, th(:,:,i)] = run_perceptron(D, T, lambda, ER);
     ERR(:,i) = nanmean(err);
 end
 
+
+%% make figure
 AZred = [171,5,32]/256;
 AZblue = [12,35,75]/256;
 
@@ -91,6 +98,8 @@ for i = 1:length(l1)
     set([l2(i) txt(i)], 'color', AZred*f1 + AZblue*f2)
 end
 set(l1, 'marker', 'none', 'linestyle', '--', 'markersize', 30)
+set(l1, 'linewidth', 3)
+set(l2, 'linewidth', 3)
 xlim([0 T])
 set(ax, 'tickdir', 'out')
 
@@ -100,7 +109,8 @@ set(ax, 'fontsize', 18)
 leg = legend([l2(3) l1(3) ], {'theory' 'simulation'});
 set(leg, 'position', [0.7371    0.2183    0.1629    0.1417]);
 
-addABCs(ax, [-0.1 0.12], 32)
+addABCs(ax, [-0.1 0.12], 32, 'abcd')
 
-saveFigurePdf(gcf, '~/Desktop/pc80_perceptronResults')
+saveFigurePdf(gcf, '~/Desktop/Figure_2')
+saveFigureEps(gcf, '~/Desktop/Figure_2')
 

@@ -163,7 +163,7 @@ e1 = errorbar(1-nanmean(accuracy,2), M, S,'.', 'markersize', 30);
 e2 = herrorbar(1-nanmean(accuracy,2), M, Sa);
 set([e1 e2'], 'color', AZred, 'linewidth', 1)
 set(e2(2), 'linestyle', 'none')
-leg =legend([l2 e1(1) l1'], {'theory' 'simulation (average)' 'simulation (all)'}, 'fontsize', 12);
+leg =legend([l2 e1(1) l1'], {'theory' 'simulation (average)' 'simulation (all)'}, 'fontsize', 16, 'location', 'south');
 
 xlabel('training error rate')
 ylabel('precision, \beta')
@@ -172,7 +172,7 @@ plot(0.1587*[1 1], yl,'k--')
 text(0.1587, 13.25, 'ER*', 'horizontalalignment', 'center' ,'fontsize', 18)
 xlim([0 0.4])
 set(ax(1), 'fontsize',18)
-set(leg, 'Position', [0.1343    0.2283    0.2114    0.1617]);
+set(leg, 'Position', [  0.13    0.205000    0.2629    0.2067]);
 
 clear pc
 axes(ax(2)); hold on;
@@ -191,7 +191,7 @@ plot(COH2*100, M(10,:), 'linewidth', 3, 'color', (AZblue))
 set(gca, 'xscale', 'log', 'xticklabel', [1 10 100])
 
 legend({['ER = ' num2str(ER_emp(7))] ['ER = ' num2str(ER_emp(5))] ['ER = ' num2str(ER_emp(9))]}, ...
-    'location', 'northwest', 'fontsize', 12)
+    'location', 'northwest', 'fontsize', 16)
 xlabel('coherence %')
 ylabel('accuracy')
 
@@ -199,5 +199,6 @@ set(ax, 'fontsize', 18, 'tickdir', 'out')
 
 
 
-addABCs(ax, [-0.07 0.05], 32)
-saveFigurePdf(gcf, '~/Desktop/LawAndGold')
+addABCs(ax, [-0.07 0.05], 32,'abcd')
+saveFigurePdf(gcf, '~/Desktop/Figure_4')
+saveFigureEps(gcf, '~/Desktop/Figure_4')
